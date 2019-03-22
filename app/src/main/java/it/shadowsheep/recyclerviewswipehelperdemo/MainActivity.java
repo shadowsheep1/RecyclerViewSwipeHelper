@@ -69,7 +69,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewSwipe
         swipeButtons.add(new RecyclerViewSwipeHelper.SwipeButton(
                 getBaseContext(),
                 R.string.delete,
+                //*
                 R.drawable.ic_delete_24dp,
+                /*/
+                0,
+                //*/
                 /*
                 0,
                 /*/
@@ -87,7 +91,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewSwipe
         swipeButtons.add(new RecyclerViewSwipeHelper.SwipeButton(
                 getBaseContext(),
                 R.string.edit,
+                //*
                 R.drawable.ic_edit_24dp,
+                /*/
+                0,
+                //*/
                 /*
                 0,
                 /*/
