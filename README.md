@@ -4,4 +4,6 @@
 
 This helper class could be used to add *Swipe Action Buttons* to a `RecyclerView` by extending `ItemTouchHelper.SimpleCallback`.
 
+![RecyclerViewSwipeHelper](https://www.shadowsheep.it/recyclerviewswipehelper_.gif)
+
 TODO...
