@@ -89,9 +89,9 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
                                    @NonNull RecyclerViewSwipeHelperDelegate delegate) {
         super(0, ItemTouchHelper.LEFT);
 
-        BUTTON_WIDTH = getButtonWidth(context);
-
         this.delegate = delegate;
+
+        BUTTON_WIDTH = getButtonWidth(context);
 
         this.recyclerView = recyclerView;
         this.buttons = new ArrayList<>();
