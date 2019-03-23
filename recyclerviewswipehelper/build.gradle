@@ -1,7 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'checkstyle'
-apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.bintray'
 
 version '1.0.0-rc1'
 group 'it.shadowsheep.recyclerviewswipehelper'
