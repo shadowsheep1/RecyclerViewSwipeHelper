@@ -1,10 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'checkstyle'
 
-version '1.0.0-rc1'
-group 'it.shadowsheep.recyclerviewswipehelper'
-
-
 android {
     compileSdkVersion 28
 
