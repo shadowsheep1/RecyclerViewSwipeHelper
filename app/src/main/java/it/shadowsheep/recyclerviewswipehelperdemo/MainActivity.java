@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewSwipe
         swipeButtons.add(new RecyclerViewSwipeHelper.SwipeButton(
                 getBaseContext(),
                 R.string.delete,
+                R.dimen.swipe_button_text_size,
                 //*
                 R.drawable.ic_delete_24dp,
                 /*/
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewSwipe
                 /*/
                 R.dimen.ic_delete_size,
                 //*/
-                R.color.red,
+                R.color.colorAccent,
                 new RecyclerViewSwipeHelper.SwipeButton.SwipeButtonClickListener() {
                     @Override
                     public void onClick(int pos) {
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewSwipe
         swipeButtons.add(new RecyclerViewSwipeHelper.SwipeButton(
                 getBaseContext(),
                 R.string.edit,
+                R.dimen.swipe_button_text_size,
                 //*
                 R.drawable.ic_edit_24dp,
                 /*/
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewSwipe
                 /*/
                 R.dimen.ic_delete_size,
                 //*/
-                R.color.green,
+                R.color.colorPrimary,
                 new RecyclerViewSwipeHelper.SwipeButton.SwipeButtonClickListener() {
                     @Override
                     public void onClick(int pos) {

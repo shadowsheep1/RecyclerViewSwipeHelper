@@ -330,11 +330,11 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
         private String text;
         private Drawable icon;
         private float iconSize;
+        private float textSize;
         private int color;
         private int pos;
         private RectF clickRegion;
         private SwipeButtonClickListener clickListener;
-        private Context context;
 
         /**
          * SwipeButtonClickListener.
@@ -354,14 +354,16 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
          */
         public SwipeButton(@NonNull Context context,
                            @StringRes int textResId,
+                           @DimenRes int textSizeId,
                            @DrawableRes int iconResId,
                            @DimenRes int iconSizeId,
                            @ColorRes int colorResId,
                            @NonNull SwipeButtonClickListener clickListener) {
-            this.context = context;
             this.text = textResId != 0 ? context.getString(textResId) : "";
             this.icon = iconResId != 0 ? ContextCompat.getDrawable(context, iconResId) : null;
             this.iconSize = iconSizeId != 0 ? context.getResources().getDimension(iconSizeId) : 0;
+            this.textSize = textSizeId != 0 ? context.getResources().getDimension(textSizeId)
+                    : Units.dp2px(context,14);
             this.color = ContextCompat.getColor(context, colorResId);
             this.clickListener = clickListener;
         }
@@ -385,7 +387,7 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
 
             // Draw Text
             p.setColor(Color.WHITE);
-            p.setTextSize(Units.dp2px(context, 12));
+            p.setTextSize(this.textSize);
 
             if (null != icon) {
                 // draw icon
