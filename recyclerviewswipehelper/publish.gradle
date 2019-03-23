@@ -4,6 +4,8 @@ apply plugin: 'com.jfrog.bintray'
 version '1.0.0-rc1'
 group 'it.shadowsheep.recyclerviewswipehelper'
 
+
+//  ./gradlew clean build bintrayUpload --info
 bintray {
     user = System.getenv('BINTRAY_USER')
     key = System.getenv('BINTRAY_KEY')
@@ -26,6 +28,16 @@ bintray {
     }
 }
 
+// In order to link to JCenter we need to add sources
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+artifacts {
+    archives sourcesJar
+}
+
 publishing {
     publications {
         Production(MavenPublication) {
@@ -36,6 +48,7 @@ publishing {
             artifactId 'recyclerviewswipehelper'
             version this.version
 
+            //The publication doesn't know about our dependencies, so we have to manually add them to the pom
             pom.withXml {
                 def dependenciesNode = asNode().appendNode('dependencies')
 
