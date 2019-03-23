@@ -11,7 +11,7 @@ bintray {
     configurations = ['archives']
     override = true
     pkg {
-        repo = 'maven'
+        repo = 'RecyclerViewSwipeHelper'
         name = 'RecyclerViewSwipeHelper'
         description = "An Android library to add swipe action buttons to a RecyclerView"
         publicDownloadNumbers = true
