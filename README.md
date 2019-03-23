@@ -8,7 +8,7 @@ This helper class could be used to add *Swipe Action Buttons* to a `RecyclerView
 
 Add the helper to your recycler view
 
-```
+```java
     private void setupSwipeMenu() {
         new RecyclerViewSwipeHelper(this, recyclerView, this);
     }
@@ -16,7 +16,7 @@ Add the helper to your recycler view
 
 And then implement delegate methods
 
-```
+```java
     @Override
     public boolean showButton(int rowPosition, int buttonIndex) {
         if (0 == rowPosition % 2) {
