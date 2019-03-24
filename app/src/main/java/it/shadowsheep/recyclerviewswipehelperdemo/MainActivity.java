@@ -48,11 +48,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewSwipe
     @Override
     public boolean showButton(int rowPosition, int buttonIndex) {
         if (0 == rowPosition % 2) {
-            if (1 == buttonIndex) {
-                return false;
-            } else {
-                return true;
-            }
+            return 1 != buttonIndex;
         } else {
             return true;
         }
