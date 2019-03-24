@@ -13,7 +13,8 @@ import it.shadowsheep.recyclerviewswipehelper.RecyclerViewSwipeHelper;
 import it.shadowsheep.recyclerviewswipehelper.screen.util.Units;
 import it.shadowsheep.recyclerviewswipehelperdemo.adapter.MyAdapter;
 
-public class MainActivity extends AppCompatActivity implements RecyclerViewSwipeHelper.RecyclerViewSwipeHelperDelegate {
+public class MainActivity extends AppCompatActivity
+        implements RecyclerViewSwipeHelper.RecyclerViewSwipeHelperDelegate {
 
     private static final String TAG = MainActivity.class.getName();
 
