@@ -9,6 +9,12 @@ This helper class could be used to add *Swipe Action Buttons* to a `RecyclerView
 
 ![RecyclerViewSwipeHelper](https://www.shadowsheep.it/recyclerviewswipehelper_.gif)
 
+Add library to your `build.gradle` file
+
+```
+implementation 'it.shadowsheep.recyclerviewswipehelper:recyclerviewswipehelper:{latest_version}'
+```
+
 Add the helper to your recycler view
 
 ```java
