@@ -97,8 +97,8 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
         this.buttons = new ArrayList<>();
 
         // We check which button has been pressed
-        GestureDetector.SimpleOnGestureListener
-                gestureListener = new GestureDetector.SimpleOnGestureListener() {
+        GestureDetector.SimpleOnGestureListener gestureListener = new GestureDetector
+                .SimpleOnGestureListener() {
             @Override
             public boolean onSingleTapConfirmed(MotionEvent e) {
                 for (SwipeButton button : buttons) {
@@ -363,7 +363,7 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
             this.icon = iconResId != 0 ? ContextCompat.getDrawable(context, iconResId) : null;
             this.iconSize = iconSizeId != 0 ? context.getResources().getDimension(iconSizeId) : 0;
             this.textSize = textSizeId != 0 ? context.getResources().getDimension(textSizeId)
-                    : Units.dp2px(context,14);
+                    : Units.dp2px(context, 14);
             this.color = ContextCompat.getColor(context, colorResId);
             this.clickListener = clickListener;
         }
