@@ -1,5 +1,6 @@
 package it.shadowsheep.recyclerviewswipehelperdemo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -103,8 +104,16 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewSwipe
                     @Override
                     public void onClick(int pos) {
                         Log.d(TAG, "pos: " + pos);
+                        Intent i = new Intent(getBaseContext(), Main2Activity.class);
+                        startActivity(i);
                     }
                 }
         ));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
     }
 }
