@@ -29,11 +29,7 @@ And then implement delegate methods
     @Override
     public boolean showButton(int rowPosition, int buttonIndex) {
         if (0 == rowPosition % 2) {
-            if (1 == buttonIndex) {
-                return false;
-            } else {
-                return true;
-            }
+            return 1 != buttonIndex;
         } else {
             return true;
         }
@@ -50,9 +46,10 @@ And then implement delegate methods
         swipeButtons.add(new RecyclerViewSwipeHelper.SwipeButton(
                 getBaseContext(),
                 0,
+                0,
                 R.drawable.ic_delete_24dp,
                 R.dimen.ic_delete_size,
-                R.color.red,
+                R.color.colorAccent,
                 new RecyclerViewSwipeHelper.SwipeButton.SwipeButtonClickListener() {
                     @Override
                     public void onClick(int pos) {
@@ -64,9 +61,25 @@ And then implement delegate methods
         swipeButtons.add(new RecyclerViewSwipeHelper.SwipeButton(
                 getBaseContext(),
                 0,
+                0,
                 R.drawable.ic_edit_24dp,
                 R.dimen.ic_delete_size,
-                R.color.green,
+                R.color.colorPrimary,
+                new RecyclerViewSwipeHelper.SwipeButton.SwipeButtonClickListener() {
+                    @Override
+                    public void onClick(int pos) {
+                        Log.d(TAG, "pos: " + pos);
+                    }
+                }
+        ));
+
+        swipeButtons.add(new RecyclerViewSwipeHelper.SwipeButton(
+                getBaseContext(),
+                R.string.yay,
+                R.dimen.swipe_button_text_size,
+                0,
+                0,
+                R.color.colorPrimaryDark,
                 new RecyclerViewSwipeHelper.SwipeButton.SwipeButtonClickListener() {
                     @Override
                     public void onClick(int pos) {
