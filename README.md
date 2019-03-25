@@ -90,4 +90,78 @@ And then implement delegate methods
     }
 ```
 
+Or provide the interface directly on constructor
+
+```kotlin
+    private fun setupSwipeMenu() {
+        RecyclerViewSwipeHelper(
+            baseContext,
+            recyclerView,
+            object : RecyclerViewSwipeHelperDelegate {
+                override fun showButton(rowPosition: Int, buttonIndex: Int): Boolean {
+                    return if (0 == rowPosition % 2) {
+                        1 != buttonIndex
+                    } else {
+                        true
+                    }
+                }
+
+                override fun buttonWidth(): Float {
+                    return Units.dp2px(baseContext, 80f)
+                }
+
+                override fun setupSwipeButtons(
+                    viewHolder: RecyclerView.ViewHolder,
+                    swipeButtons: MutableList<RecyclerViewSwipeHelper.SwipeButton>
+                ) {
+                    swipeButtons.add(RecyclerViewSwipeHelper.SwipeButton(
+                        baseContext,
+                        0,
+                        0,
+                        R.drawable.ic_delete_24dp,
+                        R.dimen.ic_delete_size,
+                        R.color.colorAccent,
+                        RecyclerViewSwipeHelper.SwipeButton.SwipeButtonClickListener { pos ->
+                            Log.d(
+                                TAG,
+                                "pos: $pos"
+                            )
+                        }
+                    ))
+
+                    swipeButtons.add(RecyclerViewSwipeHelper.SwipeButton(
+                        baseContext,
+                        0,
+                        0,
+                        R.drawable.ic_edit_24dp,
+                        R.dimen.ic_delete_size,
+                        R.color.colorPrimary,
+                        RecyclerViewSwipeHelper.SwipeButton.SwipeButtonClickListener { pos ->
+                            Log.d(
+                                TAG,
+                                "pos: $pos"
+                            )
+                        }
+                    ))
+
+                    swipeButtons.add(RecyclerViewSwipeHelper.SwipeButton(
+                        baseContext,
+                        R.string.yay,
+                        R.dimen.swipe_button_text_size,
+                        0,
+                        0,
+                        R.color.colorPrimary,
+                        RecyclerViewSwipeHelper.SwipeButton.SwipeButtonClickListener { pos ->
+                            Log.d(
+                                TAG,
+                                "Yay! pos: $pos"
+                            )
+                        }
+                    ))
+                }
+            }
+        )
+    }
+```
+
 This is a vary basic implementation still useful.
