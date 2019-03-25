@@ -32,7 +32,7 @@ import it.shadowsheep.recyclerviewswipehelper.screen.util.Units;
 
 public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
 
-    private static float BUTTON_WIDTH = 200; // Button width in PX
+    private float swipeButtonWidth; // Button width in PX
 
     // RecyclerView
     private RecyclerView recyclerView;
@@ -70,7 +70,7 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
     public interface RecyclerViewSwipeHelperDelegate {
         boolean showButton(int rowPosition, int buttonIndex);
 
-        float buttonWidth();
+        @DimenRes int buttonWidth();
 
         void setupSwipeButtons(RecyclerView.ViewHolder viewHolder,
                                List<SwipeButton> swipeButtons);
@@ -91,7 +91,7 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
 
         this.delegate = delegate;
 
-        BUTTON_WIDTH = getButtonWidth(context);
+        swipeButtonWidth = getButtonWidth(context);
 
         this.recyclerView = recyclerView;
         this.buttons = new ArrayList<>();
@@ -194,7 +194,7 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
         }
 
         buttonsBuffer.clear();
-        swipeThreshold = 0.5f * buttons.size() * BUTTON_WIDTH;
+        swipeThreshold = 0.5f * buttons.size() * swipeButtonWidth;
         recoverSwipedItem();
     }
 
@@ -247,7 +247,7 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
 
                 assert buffer != null;
 
-                translationX = deltaX * buffer.size() * BUTTON_WIDTH / itemView.getWidth();
+                translationX = deltaX * buffer.size() * swipeButtonWidth / itemView.getWidth();
                 drawButtons(c, itemView, buffer, pos, translationX);
             }
         }
@@ -259,11 +259,11 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
 
     private float getButtonWidth(Context context) {
         if (null != delegate) {
-            float buttonWidth = delegate.buttonWidth();
-            if (buttonWidth <= 10) {
+            int buttonWidth = delegate.buttonWidth();
+            if (0 == buttonWidth) {
                 return Units.dp2px(context, 80.f);
             } else {
-                return buttonWidth;
+                return context.getResources().getDimension(buttonWidth);
             }
         } else {
             return Units.dp2px(context, 80.f);

@@ -38,8 +38,9 @@ And then implement delegate methods
     }
 
     @Override
-    public float buttonWidth() {
-        return Units.dp2px(this, 80.f);
+    public @DimenRes
+    int buttonWidth() {
+        return R.dimen.swipe_button_width;
     }
 
     @Override
@@ -110,8 +111,9 @@ Or provide the interface directly on constructor
                     }
                 }
 
-                override fun buttonWidth(): Float {
-                    return Units.dp2px(baseContext, 80f)
+                @DimenRes
+                override fun buttonWidth(): Int {
+                    return R.dimen.swipe_button_width
                 }
 
                 override fun setupSwipeButtons(

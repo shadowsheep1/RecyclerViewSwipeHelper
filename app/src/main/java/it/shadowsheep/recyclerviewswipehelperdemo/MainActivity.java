@@ -2,6 +2,7 @@ package it.shadowsheep.recyclerviewswipehelperdemo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.DimenRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +11,6 @@ import android.util.Log;
 import java.util.List;
 
 import it.shadowsheep.recyclerviewswipehelper.RecyclerViewSwipeHelper;
-import it.shadowsheep.recyclerviewswipehelper.screen.util.Units;
 import it.shadowsheep.recyclerviewswipehelperdemo.adapter.MyAdapter;
 
 public class MainActivity extends AppCompatActivity
@@ -57,8 +57,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public float buttonWidth() {
-        return Units.dp2px(this, 80.f);
+    public @DimenRes
+    int buttonWidth() {
+        return R.dimen.swipe_button_width;
     }
 
     @Override
