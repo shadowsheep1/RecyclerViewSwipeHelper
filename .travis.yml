@@ -7,3 +7,7 @@ android:
     - extra
 script:
     - TERM=dumb ./gradlew build
+branches:
+  only:
+  - master
+  - stable
