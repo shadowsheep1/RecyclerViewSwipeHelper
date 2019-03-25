@@ -7,7 +7,7 @@
 
 This helper class could be used to add *Swipe Action Buttons* to a `RecyclerView` by extending `ItemTouchHelper.SimpleCallback`.
 
-![RecyclerViewSwipeHelper](https://www.shadowsheep.it/recyclerviewswipehelper_1.0.0-rc2.gif)
+![RecyclerViewSwipeHelper](http://www.shadowsheep.it/github/recyclerviewswipehelper-1.1.0-rc1.gif)
 
 Add library to your `build.gradle` file
 
