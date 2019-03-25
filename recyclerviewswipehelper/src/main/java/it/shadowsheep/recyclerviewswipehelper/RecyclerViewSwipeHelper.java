@@ -259,11 +259,11 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
 
     private float getButtonWidth(Context context) {
         if (null != delegate) {
-            int buttonWidth = delegate.buttonWidth();
-            if (0 == buttonWidth) {
+            int buttonWidthResId = delegate.buttonWidth();
+            if (0 == buttonWidthResId) {
                 return Units.dp2px(context, 80.f);
             } else {
-                return context.getResources().getDimension(buttonWidth);
+                return context.getResources().getDimension(buttonWidthResId);
             }
         } else {
             return Units.dp2px(context, 80.f);
