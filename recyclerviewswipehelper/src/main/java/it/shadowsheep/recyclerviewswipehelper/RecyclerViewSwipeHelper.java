@@ -422,6 +422,9 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
                 float rectWidth = rect.width();
 
                 float textSizeFactor = (rect.right - rect.left) / swipedButtonWidth;
+                if (textSizeFactor > 1) {
+                    textSizeFactor = 1;
+                }
 
                 // Draw Text
                 p.setColor(Color.WHITE);
