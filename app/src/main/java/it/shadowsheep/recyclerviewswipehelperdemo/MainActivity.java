@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(int pos) {
                         Log.d(TAG, "pos: " + pos);
                         Toast.makeText(getBaseContext(),
-                                "Delete Action",
+                                "Delete Action @" + pos,
                                 Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(int pos) {
                         Log.d(TAG, "pos: " + pos);
                         Toast.makeText(getBaseContext(),
-                                "Edit Action",
+                                "Edit Action @" + pos,
                                 Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(int pos) {
                         Log.d(TAG, "pos: " + pos);
                         Toast.makeText(getBaseContext(),
-                                "Yay! Action",
+                                "Yay! Action @" + pos,
                                 Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(getBaseContext(), Main2Activity.class);
                         startActivity(i);
