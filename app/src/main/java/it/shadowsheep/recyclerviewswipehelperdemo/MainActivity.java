@@ -21,7 +21,10 @@ public class MainActivity extends AppCompatActivity
 
     private RecyclerView recyclerView;
 
-    private String[] myDataset = {"Foo", "Bar", "Beer", "Bear", "Geek", "Wizard"};
+    private String[] myDataset = {
+            "Foo", "Bar", "Beer", "Bear", "Geek", "Wizard",
+            "Foo", "Bar", "Beer", "Bear", "Geek", "Wizard",
+            "Foo", "Bar", "Beer", "Bear", "Geek", "Wizard"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
