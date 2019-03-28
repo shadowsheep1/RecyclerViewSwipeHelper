@@ -5,8 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import it.shadowsheep.recyclerviewswipehelperdemo.R;
 
@@ -19,10 +21,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         TextView textView;
+        View parentView;
 
         MyViewHolder(ConstraintLayout parent, TextView tv) {
             super(parent);
             textView = tv;
+            parentView = parent;
+
+            parentView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(),
+                            "Main item clicked!",
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }
     }
 
