@@ -275,10 +275,12 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
     /**
      * ItemTouchHelper.SimpleCallback
      * <p>
-     * Called by the ItemTouchHelper when the user interaction with an element is over and it also completed its animation.
+     * Called by the ItemTouchHelper when the user interaction with an element is over
+     * and it also completed its animation.
      * </p>
      *
-     * @param recyclerView RecyclerView: The RecyclerView which is controlled by the ItemTouchHelper.
+     * @param recyclerView RecyclerView: The RecyclerView which is controlled
+     *                     by the ItemTouchHelper.
      * @param viewHolder RecyclerView.ViewHolder: The View that was interacted by the user.
      */
     @Override
