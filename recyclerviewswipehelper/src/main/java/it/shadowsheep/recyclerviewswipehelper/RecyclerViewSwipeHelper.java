@@ -417,10 +417,6 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
                 icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
                 icon.draw(c);
             } else {
-                Rect r = new Rect();
-                float rectHeight = rect.height();
-                float rectWidth = rect.width();
-
                 float textSizeFactor = (rect.right - rect.left) / swipedButtonWidth;
                 if (textSizeFactor > 1) {
                     textSizeFactor = 1;
@@ -430,8 +426,11 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
                 p.setColor(Color.WHITE);
                 p.setTextSize(this.textSize * textSizeFactor);
                 p.setTextAlign(Paint.Align.LEFT);
+                Rect r = new Rect(); // we populate rect values by exec the below line [-;
                 p.getTextBounds(text, 0, text.length(), r);
 
+                float rectHeight = rect.height();
+                float rectWidth = rect.width();
                 float x = rectWidth / 2f - r.width() / 2f - r.left;
                 float y = rectHeight / 2f + r.height() / 2f - r.bottom;
 
