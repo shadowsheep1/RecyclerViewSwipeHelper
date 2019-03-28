@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import it.shadowsheep.recyclerviewswipehelper.holder.SwipeViewHolder;
 import it.shadowsheep.recyclerviewswipehelperdemo.R;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
@@ -18,7 +19,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    static class MyViewHolder extends RecyclerView.ViewHolder {
+    static class MyViewHolder extends SwipeViewHolder {
         // each data item is just a string in this case
         TextView textView;
         View parentView;
