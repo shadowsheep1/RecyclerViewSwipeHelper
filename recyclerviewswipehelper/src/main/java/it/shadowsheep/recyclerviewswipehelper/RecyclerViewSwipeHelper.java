@@ -28,6 +28,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import it.shadowsheep.recyclerviewswipehelper.holder.SwipeViewHolder;
 import it.shadowsheep.recyclerviewswipehelper.screen.util.Units;
 
 public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
@@ -196,6 +197,10 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
         buttonsBuffer.clear();
         swipeThreshold = 0.5f * buttons.size() * swipeButtonWidth;
         recoverSwipedItem();
+
+        if (viewHolder instanceof SwipeViewHolder) {
+            ((SwipeViewHolder) viewHolder).setSwiped();
+        }
     }
 
     @Override
@@ -248,13 +253,45 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
                 assert buffer != null;
 
                 translationX = deltaX * buffer.size() * swipeButtonWidth / itemView.getWidth();
-                drawButtons(c, itemView, buffer, pos, translationX);
+
+                if (viewHolder instanceof SwipeViewHolder) {
+                    boolean swipingBack = ((SwipeViewHolder) viewHolder).isSwiped();
+                    if (swipingBack && swipedPos != pos) {
+                        translationX = ((SwipeViewHolder) viewHolder).getTranslationX();
+                    } else {
+                        ((SwipeViewHolder) viewHolder).setTranslationX(translationX);
+                    }
+                }
+
+                drawButtons(c, itemView, buffer, pos, translationX, swipeButtonWidth);
             }
         }
 
         // We block the swipe to tranlationX. This is needed also to get the right button click
         super.onChildDraw(c, recyclerView, viewHolder, translationX, deltaY, actionState,
                 isCurrentlyActive);
+    }
+
+    /**
+     * ItemTouchHelper.SimpleCallback
+     * <p>
+     * Called by the ItemTouchHelper when the user interaction with an element is over
+     * and it also completed its animation.
+     * </p>
+     *
+     * @param recyclerView RecyclerView: The RecyclerView which is controlled
+     *                     by the ItemTouchHelper.
+     * @param viewHolder RecyclerView.ViewHolder: The View that was interacted by the user.
+     */
+    @Override
+    public void clearView(@NonNull RecyclerView recyclerView,
+                          @NonNull RecyclerView.ViewHolder viewHolder) {
+        if (viewHolder instanceof SwipeViewHolder) {
+            if (((SwipeViewHolder) viewHolder).isSwiped()) {
+                ((SwipeViewHolder) viewHolder).clear();
+            }
+        }
+        super.clearView(recyclerView, viewHolder);
     }
 
     private float getButtonWidth(Context context) {
@@ -301,7 +338,8 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
                              @NonNull View itemView,
                              @NonNull List<SwipeButton> buffer,
                              int pos,
-                             float deltaX) {
+                             float deltaX,
+                             float swipedButtonWidth) {
         float right = itemView.getRight();
         float buttonWidth = (-1) * deltaX / buffer.size();
 
@@ -315,7 +353,8 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
                             right,
                             itemView.getBottom()
                     ),
-                    pos
+                    pos,
+                    swipedButtonWidth
             );
             right = left;
         }
@@ -378,16 +417,12 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
             return false;
         }
 
-        void onDraw(Canvas c, RectF rect, int pos) {
+        void onDraw(Canvas c, RectF rect, int pos, float swipedButtonWidth) {
             Paint p = new Paint();
 
             // Draw background
             p.setColor(color);
             c.drawRect(rect, p);
-
-            // Draw Text
-            p.setColor(Color.WHITE);
-            p.setTextSize(this.textSize);
 
             if (null != icon) {
                 // draw icon
@@ -419,13 +454,23 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
                 icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
                 icon.draw(c);
             } else {
-                Rect r = new Rect();
+                float textSizeFactor = (rect.right - rect.left) / swipedButtonWidth;
+                if (textSizeFactor > 1) {
+                    textSizeFactor = 1;
+                }
+
+                // Draw Text
+                p.setColor(Color.WHITE);
+                p.setTextSize(this.textSize * textSizeFactor);
+                p.setTextAlign(Paint.Align.LEFT);
+                Rect r = new Rect(); // we populate rect values by exec the below line [-;
+                p.getTextBounds(text, 0, text.length(), r);
+
                 float rectHeight = rect.height();
                 float rectWidth = rect.width();
-                p.setTextAlign(Paint.Align.LEFT);
-                p.getTextBounds(text, 0, text.length(), r);
                 float x = rectWidth / 2f - r.width() / 2f - r.left;
                 float y = rectHeight / 2f + r.height() / 2f - r.bottom;
+
                 c.drawText(text, rect.left + x, rect.top + y, p);
             }
 

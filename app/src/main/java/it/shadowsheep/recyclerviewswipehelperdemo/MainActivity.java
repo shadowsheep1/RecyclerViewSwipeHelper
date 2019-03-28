@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -20,7 +21,10 @@ public class MainActivity extends AppCompatActivity
 
     private RecyclerView recyclerView;
 
-    private String[] myDataset = {"Foo", "Bar", "Beer", "Bear", "Geek", "Wizard"};
+    private String[] myDataset = {
+            "Foo", "Bar", "Beer", "Bear", "Geek", "Wizard",
+            "Foo", "Bar", "Beer", "Bear", "Geek", "Wizard",
+            "Foo", "Bar", "Beer", "Bear", "Geek", "Wizard"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +80,9 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(int pos) {
                         Log.d(TAG, "pos: " + pos);
+                        Toast.makeText(getBaseContext(),
+                                "Delete Action @" + pos,
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
         ));
@@ -91,6 +98,9 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(int pos) {
                         Log.d(TAG, "pos: " + pos);
+                        Toast.makeText(getBaseContext(),
+                                "Edit Action @" + pos,
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
         ));
@@ -106,6 +116,9 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(int pos) {
                         Log.d(TAG, "pos: " + pos);
+                        Toast.makeText(getBaseContext(),
+                                "Yay! Action @" + pos,
+                                Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(getBaseContext(), Main2Activity.class);
                         startActivity(i);
                     }
