@@ -173,4 +173,6 @@ Or provide the interface directly on constructor
     }
 ```
 
+If you want a more fancy swipe back behavior you could make your `ViewHolder` extend `SwipeViewHolder`.
+
 This is a vary basic implementation still useful.
