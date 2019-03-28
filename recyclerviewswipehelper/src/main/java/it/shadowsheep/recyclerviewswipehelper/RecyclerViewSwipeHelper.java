@@ -28,6 +28,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import it.shadowsheep.recyclerviewswipehelper.holder.SwipeViewHolder;
 import it.shadowsheep.recyclerviewswipehelper.screen.util.Units;
 
 public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
@@ -196,6 +197,10 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
         buttonsBuffer.clear();
         swipeThreshold = 0.5f * buttons.size() * swipeButtonWidth;
         recoverSwipedItem();
+
+        if (viewHolder instanceof SwipeViewHolder) {
+            ((SwipeViewHolder) viewHolder).setSwiped();
+        }
     }
 
     @Override
@@ -248,6 +253,16 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
                 assert buffer != null;
 
                 translationX = deltaX * buffer.size() * swipeButtonWidth / itemView.getWidth();
+
+                if (viewHolder instanceof SwipeViewHolder) {
+                    boolean swipingBack = ((SwipeViewHolder) viewHolder).isSwiped();
+                    if (swipingBack && swipedPos != pos) {
+                        translationX = ((SwipeViewHolder) viewHolder).getTranslationX();
+                    } else {
+                        ((SwipeViewHolder) viewHolder).setTranslationX(translationX);
+                    }
+                }
+
                 drawButtons(c, itemView, buffer, pos, translationX, swipeButtonWidth);
             }
         }
@@ -255,6 +270,26 @@ public class RecyclerViewSwipeHelper extends ItemTouchHelper.SimpleCallback {
         // We block the swipe to tranlationX. This is needed also to get the right button click
         super.onChildDraw(c, recyclerView, viewHolder, translationX, deltaY, actionState,
                 isCurrentlyActive);
+    }
+
+    /**
+     * ItemTouchHelper.SimpleCallback
+     * <p>
+     * Called by the ItemTouchHelper when the user interaction with an element is over and it also completed its animation.
+     * </p>
+     *
+     * @param recyclerView RecyclerView: The RecyclerView which is controlled by the ItemTouchHelper.
+     * @param viewHolder RecyclerView.ViewHolder: The View that was interacted by the user.
+     */
+    @Override
+    public void clearView(@NonNull RecyclerView recyclerView,
+                          @NonNull RecyclerView.ViewHolder viewHolder) {
+        if (viewHolder instanceof SwipeViewHolder) {
+            if (((SwipeViewHolder) viewHolder).isSwiped()) {
+                ((SwipeViewHolder) viewHolder).clear();
+            }
+        }
+        super.clearView(recyclerView, viewHolder);
     }
 
     private float getButtonWidth(Context context) {
