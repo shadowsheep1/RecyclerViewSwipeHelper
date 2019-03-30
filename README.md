@@ -2,7 +2,6 @@
 
 [![Download](https://api.bintray.com/packages/shadowsheep/RecyclerViewSwipeHelper/RecyclerViewSwipeHelper/images/download.svg)](https://bintray.com/shadowsheep/RecyclerViewSwipeHelper/RecyclerViewSwipeHelper/_latestVersion)
 [![Build Status](https://travis-ci.org/shadowsheep1/RecyclerViewSwipeHelper.svg?branch=master)](https://travis-ci.org/shadowsheep1/RecyclerViewSwipeHelper)
-
 [![License](https://img.shields.io/static/v1.svg?label=License&message=Apache-2.0&color=blue)](https://shields.io)
 [![API level compat](https://img.shields.io/badge/api-19+-yellogreen.svg)](https://shields.io)
 
